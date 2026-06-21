@@ -1,4 +1,4 @@
-# QR Studio App 📷
+# QR App 📷
 
 Hi! This is my fourth project. It is a QR code app that can generate new QR codes and scan existing ones using the camera or an uploaded image.
 I built it using HTML, CSS and JavaScript, and made it work completely offline by downloading all the libraries and fonts into my own project instead of loading them from the internet.
