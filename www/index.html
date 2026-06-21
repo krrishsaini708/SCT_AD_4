@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Studio</title>
+
+    <!-- Google Fonts -->
+    <link href="font.css" rel="stylesheet">
+
+    <!-- my css file -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- library to generate qr codes -->
+    <script src="Qrcode.min.js"></script>
+
+    <!-- library to read/scan qr codes from images -->
+    <script src="Jsqr.js"></script>
+</head>
+<body>
+
+    <!-- top bar -->
+    <header class="topbar">
+        <div class="brand">
+            <span class="brand-mark">⌗</span>
+            <span class="brand-name">QR Studio</span>
+        </div>
+    </header>
+
+    <main class="wrap">
+
+        <!-- segmented mode switch -->
+        <div class="switch" role="tablist">
+            <button class="switch-btn active" id="tabGenerate" onclick="showTab('generate')">
+                Create
+            </button>
+            <button class="switch-btn" id="tabScan" onclick="showTab('scan')">
+                Scan
+            </button>
+            <span class="switch-thumb" id="switchThumb"></span>
+        </div>
+
+        <!-- ============== CREATE PANEL ============== -->
+        <section class="panel" id="generatePanel">
+
+            <div class="card">
+
+                <label class="field-label" for="qrText">What should the code link to?</label>
+                <textarea
+                    id="qrText"
+                    class="field-input"
+                    rows="3"
+                    placeholder="Paste a link, or type any text..."
+                ></textarea>
+
+                <!-- color choices -->
+                <div class="color-row">
+                    <span class="field-label small">Style</span>
+                    <div class="swatches" id="swatches">
+                        <button class="swatch active" data-fg="#16161f" data-bg="#ffffff" style="background:#16161f" onclick="pickStyle(this)"></button>
+                        <button class="swatch" data-fg="#0c5e4f" data-bg="#eafff6" style="background:#0c5e4f" onclick="pickStyle(this)"></button>
+                        <button class="swatch" data-fg="#3730a3" data-bg="#eef0ff" style="background:#3730a3" onclick="pickStyle(this)"></button>
+                        <button class="swatch" data-fg="#9a1f3c" data-bg="#fff0f3" style="background:#9a1f3c" onclick="pickStyle(this)"></button>
+                    </div>
+                </div>
+
+                <button class="btn-primary" onclick="generateQR()">
+                    Generate code
+                </button>
+
+            </div>
+
+            <!-- result card, hidden until something is generated -->
+            <div class="card result-card hidden" id="resultCard">
+                <div class="qr-frame" id="qrFrame"></div>
+                <p class="result-caption" id="resultCaption">your-text-here</p>
+                <div class="result-actions">
+                    <button class="btn-ghost" onclick="downloadQR()">Download PNG</button>
+                    <button class="btn-ghost" onclick="copyQRText()">Copy text</button>
+                </div>
+            </div>
+
+            <p class="hint" id="genHint"></p>
+
+        </section>
+
+        <!-- ============== SCAN PANEL ============== -->
+        <section class="panel hidden" id="scanPanel">
+
+            <div class="card">
+
+                <!-- live camera scanner -->
+                <div class="scan-stage" id="scanStage">
+                    <video id="cameraView" class="scan-video hidden" playsinline></video>
+                    <canvas id="scanCanvas" class="hidden"></canvas>
+
+                    <div class="scan-placeholder" id="scanPlaceholder">
+                        <span class="scan-icon">⌗</span>
+                        <p>Point a camera at a code, or upload an image</p>
+                    </div>
+
+                    <!-- corner brackets, purely visual -->
+                    <div class="scan-frame">
+                        <span class="corner tl"></span>
+                        <span class="corner tr"></span>
+                        <span class="corner bl"></span>
+                        <span class="corner br"></span>
+                        <div class="scan-line" id="scanLine"></div>
+                    </div>
+                </div>
+
+                <div class="scan-actions">
+                    <button class="btn-primary" id="cameraBtn" onclick="toggleCamera()">
+                        Start camera
+                    </button>
+                    <button class="btn-ghost" onclick="document.getElementById('fileInput').click()">
+                        Upload image
+                    </button>
+                    <input type="file" id="fileInput" accept="image/*" onchange="scanFromFile(event)" hidden>
+                </div>
+
+            </div>
+
+            <!-- decoded result -->
+            <div class="card result-card hidden" id="scanResultCard">
+                <span class="field-label small">Decoded</span>
+                <p class="decoded-text" id="decodedText"></p>
+                <div class="result-actions">
+                    <button class="btn-ghost" id="openLinkBtn" onclick="openDecodedLink()">Open link</button>
+                    <button class="btn-ghost" onclick="copyDecodedText()">Copy</button>
+                </div>
+            </div>
+
+            <p class="hint" id="scanHint"></p>
+
+        </section>
+
+    </main>
+
+    <!-- my javascript logic -->
+    <script src="Qr_app.js"></script>
+
+</body>
+</html>

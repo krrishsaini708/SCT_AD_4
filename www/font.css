@@ -1,0 +1,58 @@
+/* =============================================
+   Project 4 — QR Studio
+   File: static/fonts/fonts.css
+
+   These are the same two fonts I was loading from
+   Google Fonts before (Inter and Space Grotesk).
+   I downloaded the actual font files and put them here
+   so the app works fully offline, no internet needed.
+   This matters a lot for the Android version since a
+   phone might not always have wifi or data on.
+============================================= */
+
+/* Inter - used for normal body text, labels, buttons */
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    src: url('inter-latin-400-normal.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    src: url('inter-latin-500-normal.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    src: url('inter-latin-600-normal.woff2') format('woff2');
+}
+
+
+/* Space Grotesk - used for the bigger headings/brand name */
+
+@font-face {
+    font-family: 'Space Grotesk';
+    font-style: normal;
+    font-weight: 500;
+    src: url('space-grotesk-latin-500-normal.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Space Grotesk';
+    font-style: normal;
+    font-weight: 600;
+    src: url('space-grotesk-latin-600-normal.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Space Grotesk';
+    font-style: normal;
+    font-weight: 700;
+    src: url('space-grotesk-latin-700-normal.woff2') format('woff2');
+}
