@@ -20,6 +20,12 @@ I am still learning so the code might not be perfect but it works fine and I tri
 - Works fully offline once the page is loaded — no internet needed
 
 ---
+Download the App
+You can download and install the APK file directly from this link :
+
+👉 Download Qr APK
+
+Note: Your phone might show a security warning since this app is not on the Play Store. Just tap "More Details" and then "Install Anyway" to proceed.
 
 ## Technologies I used
 
